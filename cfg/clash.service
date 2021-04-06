@@ -1,0 +1,10 @@
+[Unit]
+Description=Clash
+
+[Service]
+ExecStartPre=/usr/bin/bash -c "sysctl -w net/ipv4/ip_forward=1 && clash -t && sleep 5"
+ExecStart=/usr/local/sbin/clash
+User=root
+
+[Install]
+WantedBy=multi-user.target
