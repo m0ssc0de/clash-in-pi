@@ -2,8 +2,8 @@
 Description=Clash
 
 [Service]
-ExecStartPre=/usr/bin/bash -c "sysctl -w net/ipv4/ip_forward=1 && clash -t && sleep 5"
-ExecStart=/usr/local/sbin/clash
+ExecStartPre=/usr/bin/bash -c "setcap 'cap_net_admin=eip cap_net_bind_service=+eip' /usr/bin/clash && sysctl -w net/ipv4/ip_forward=1 && clash -t && sleep 5"
+ExecStart=/usr/bin/clash
 User=root
 
 [Install]
